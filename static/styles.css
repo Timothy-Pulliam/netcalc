@@ -1,0 +1,15 @@
+table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Change to desired color */
+ }
+ 
+ table tr:nth-child(odd) {
+    background-color: #ddd; /* Change to desired color */
+ }
+ 
+ /* table {
+    border: 1px solid black;
+ } */
+
+ td {
+    border-bottom: 1px solid black;
+ }

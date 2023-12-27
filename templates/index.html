@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Subnet Calculator</h1>
+
+        <p>Read the RFCs</p>
+        <p>
+            <a href="https://datatracker.ietf.org/doc/html/rfc5735.html#page-6" target="_blank" rel="noopener noreferrer">Special Use IPv4 Addresses - rfc5735</a>
+        </p>
+
+        <p>Enter an IPv4/IPv6 CIDR (e.g. 10.0.1.5/16, 2000::/4)
+        </p>
+
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                <b>{{ message }}</b>
+            </div>
+        {% endfor %}
+
+        <form action="/" method="post">
+            <label for="cidr">CIDR: </label>
+            <input type="text" name="cidr" id="cidr" value="{{ data.input_cidr | default('') }}">
+            <button type="submit">Calculate</button>
+        </form>
+
+        <hr/>
+        {% if data is defined and data != '' %}
+            <table>
+                <tr>
+                    <td>IP Address</td>
+                    <td>{{ data.ip_address | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>CIDR</td>
+                    <td>{{ data.cidr | default('') }}</td>
+                </tr>
+                <tr>
+                    <td> Network Address</td>
+                    <td>{{ data.network_address | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>Usable Host IP Range</td>
+                    <td>{{ data.usable_address_range | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>Broadcast Address</td>
+                    <td>{{ data.broadcast_address | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>Total Number of Hosts</td>
+                    <td>{{ data.total_num_hosts | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>Number of Usable Addresses</td>
+                    <td>{{ data.num_usable_hosts | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>Subnet Mask</td>
+                    <td>{{ data.subnet_mask | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>Binary Subnet Mask</td>
+                    <td>{{ data.binary_subnet_mask | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>IP Class</td>
+                    <td>{{ data.ip_class | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>Private/Public</td>
+                    <td>{{ data.private_public | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>Reverse PTR</td>
+                    <td>{{ data.in_addr_arpa | default('') }}</td>
+                </tr>
+                <tr>
+                    <td>IPv4 Mapped</td>
+                    <td>{{ data.ipv4_mapped | default('') }}</td>
+                </tr>
+
+            </table>
+
+        {% endif %}
+
+        {# <label for="version">IPv </label>
+        <input type="text" name="version" id="version" value="{{ data.version | default('') }}" readonly/>
+
+        <br>
+
+        <label for="private">Private: </label>
+        <input type="text" name="private" id="private" value="{{ data.private | default('') }}" readonly/>
+
+        <br>
+        <label for="network_address">Network Address: </label>
+        <input type="text" name="network_address" id="network_address" value="{{ data.network_address | default('') }}" readonly/>
+
+        <br>
+
+        <label for="broadcast_address">Broadcast: </label>
+        <input type="text" name="broadcast_address" id="broadcast_address" value="{{ data.broadcast_address | default('') }}" readonly/>
+
+        <br>
+
+        <label for="num_addresses">Total Addresses: </label>
+        <input type="text" name="num_addresses" id="num_addresses" value="{{ data.num_addresses | default('') }}" readonly/>
+
+        <br>
+
+        <label for="usable_addresses">Usable Addresses: </label>
+        <input type="text" name="usable_addresses" id="usable_addresses" value="{{ data.usable_addresses | default('') }}" readonly/> #}
+
+    </body>
+</html>
