@@ -66,10 +66,7 @@ def index():
 
 @app.route('/gibmeip')
 def gibmeip():
-    # if behind a proxy get 'X-Forwarded-For' header
-    # else, fallback to flask.request.remote_addr
-    client_ip = flask.request.headers.get(
-        'X-Forwarded-For', flask.request.remote_addr)
+    client_ip = flask.request.access_route[-1]
     return f'{client_ip}'
 
 
