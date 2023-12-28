@@ -41,7 +41,6 @@ def index():
         private_public = "Private" if cidr.is_private else "Public"
         # version = cidr.version
         in_addr_arpa = ip_address.reverse_pointer
-        ipv4_mapped = ip_address.ipv4_mapped
 
         data = {
             'input_cidr': input_cidr,
@@ -56,7 +55,6 @@ def index():
             'binary_subnet_mask': binary_subnet_mask,
             'private_public': private_public,
             'in_addr_arpa': in_addr_arpa,
-            'ipv4_mapped': ipv4_mapped,
             # 'version': version,
         }
 
