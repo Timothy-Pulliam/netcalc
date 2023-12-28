@@ -1,41 +1,23 @@
-from flask import Flask
 import flask
 import ipaddress
-from pprint import pprint
 import secrets
 
-app = Flask(__name__)
-
+app = flask.Flask(__name__)
+# secret key needed to flash messages
 app.secret_key = secrets.token_hex()
-
-
-def get_class(ip):
-    first_octet = int(str(ip).split('.')[0])
-    if 1 <= first_octet <= 126:
-        return 'Class A'
-    elif 128 <= first_octet <= 191:
-        return 'Class B'
-    elif 192 <= first_octet <= 223:
-        return 'Class C'
-    elif 224 <= first_octet <= 239:
-        return 'Class D'
-    elif 240 <= first_octet <= 255:
-        return 'Class E'
-    else:
-        return 'Invalid IP'
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if flask.request.method == 'GET':
-        return flask.render_template('index.html', data='')
+        return flask.render_template('index.html', show_table=False)
     if flask.request.method == 'POST':
+        input_cidr = flask.request.form['cidr']
         try:
-            cidr = ipaddress.ip_network(
-                flask.request.form['cidr'], strict=False)
+            cidr = ipaddress.ip_network(input_cidr, strict=False)
         except ValueError as e:
             flask.flash('Not a valid CIDR')
-            return flask.render_template('index.html', data='')
+            return flask.render_template('index.html', input_cidr=input_cidr, show_table=False)
 
         input_cidr = flask.request.form['cidr']
         ip_address = ipaddress.ip_address(
@@ -81,8 +63,7 @@ def index():
             # 'version': version,
         }
 
-        pprint(data)
-        return flask.render_template('index.html', data=data)
+        return flask.render_template('index.html', input_cidr=input_cidr, data=data)
 
 
 # catch all route

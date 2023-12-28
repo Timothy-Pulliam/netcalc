@@ -25,12 +25,19 @@
 
         <form action="/" method="post">
             <label for="cidr">CIDR: </label>
-            <input type="text" name="cidr" id="cidr" value="{{ data.input_cidr | default('') }}">
+            <input type="text" name="cidr" id="cidr" value="{{ input_cidr | default('') }}">
             <button type="submit">Calculate</button>
         </form>
 
+        <script>
+            // set focus on input field
+            document
+                .getElementById("cidr")
+                .focus();
+        </script>
+
         <hr/>
-        {% if data is defined and data != '' %}
+        {% if show_table != False %}
             <table>
                 <tr>
                     <td>IP Address</td>
