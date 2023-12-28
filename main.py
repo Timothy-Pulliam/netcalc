@@ -66,7 +66,8 @@ def index():
 @app.route('/gibmeip')
 def gibmeip():
     client_ip = flask.request.access_route[-1]
-    return f'{client_ip}'
+    return f'Access Route: {str(flask.request.access_route)}\nRemote Addr: {str(flask.request.remote_addr)}'
+    # return f'{client_ip}'
 
 
 # catch all route
