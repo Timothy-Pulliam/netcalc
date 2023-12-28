@@ -4,7 +4,7 @@ ENV PATH=$PATH:/home/flaskuser/.local/bin
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PIP_NO_CACHE_DIR=1
 
-EXPOSE 80/tcp
+EXPOSE 8080/tcp
 RUN adduser -D flaskuser
 
 WORKDIR /home/flaskuser
