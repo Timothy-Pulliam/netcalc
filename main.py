@@ -38,7 +38,6 @@ def index():
         chunks = [binary_subnet_mask[i:i+8]
                   for i in range(0, len(binary_subnet_mask), 8)]
         binary_subnet_mask = '.'.join(chunks)
-        ip_class = None
         private_public = "Private" if cidr.is_private else "Public"
         # version = cidr.version
         in_addr_arpa = ip_address.reverse_pointer
@@ -56,7 +55,6 @@ def index():
             'num_usable_hosts': num_usable_hosts,
             'subnet_mask': subnet_mask,
             'binary_subnet_mask': binary_subnet_mask,
-            'ip_class': ip_class,
             'private_public': private_public,
             'in_addr_arpa': in_addr_arpa,
             'ipv4_mapped': ipv4_mapped,
