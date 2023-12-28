@@ -35,5 +35,5 @@ jobs:
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           name: subnetcalc
           location: "east us"
-          ports: ["8080"]
+          ports: "8080"
           command-line: /bin/sh /home/flaskuser/start.sh
