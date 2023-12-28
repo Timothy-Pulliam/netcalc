@@ -36,4 +36,7 @@ jobs:
           name: subnetcalc
           location: "east us"
           ports: "8080"
+          cpu: 1
+          memory: 1
+          restart-policy: "OnFailure"
           command-line: /bin/sh /home/flaskuser/start.sh
