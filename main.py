@@ -41,8 +41,7 @@ def index():
         private_public = "Private" if cidr.is_private else "Public"
         # version = cidr.version
         in_addr_arpa = ip_address.reverse_pointer
-        ipv4_mapped = None
-        _6to4_prefix = None
+        ipv4_mapped = ip_address.ipv4_mapped
 
         data = {
             'input_cidr': input_cidr,
