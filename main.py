@@ -64,6 +64,15 @@ def index():
         return flask.render_template('index.html', input_cidr=input_cidr, data=data)
 
 
+@app.route('/gibmeip')
+def gibmeip():
+    # if behind a proxy get 'X-Forwarded-For' header
+    # else, fallback to flask.request.remote_addr
+    client_ip = flask.request.headers.get(
+        'X-Forwarded-For', flask.request.remote_addr)
+    return f'{client_ip}'
+
+
 # catch all route
 @app.route('/<path:path>')
 def catch_all(path):
