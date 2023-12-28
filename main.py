@@ -85,4 +85,7 @@ def index():
         return flask.render_template('index.html', data=data)
 
 
-app.run(debug=True, host="0.0.0.0", port=8080)
+# catch all route
+@app.route('/<path:path>')
+def catch_all(path):
+    return flask.redirect(flask.url_for('index'))
