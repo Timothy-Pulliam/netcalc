@@ -1,30 +1,32 @@
-# subnet_calculator
+# Net Calc
+
+An IPv4/IPv6 calculator built with Python/Flask.
 
 ## Build Docker Image Locally
 
 ```bash
-docker build -t subnet_calc:latest .
+docker build -t netcalc:latest .
 ```
 
 If using Mac OS with M1 ARM cpu, build using
 
 ```bash
-docker build --no-cache --platform linux/amd64 -t subnet_calc:latest .
+docker build --no-cache --platform linux/amd64 -t netcalc:latest .
 ```
 
 Run the image locally
 
 ```bash
-docker run -d -p 8080:80 subnet_calc:latest
+docker run -d -p 8080:8080 netcalc:latest
 ```
 
 push image to Azure Container registry
 
 ```bash
 az login
-az acr login --name subnetcalc
-docker tag subnet_calc:latest subnetcalc.azurecr.io/subnet_calc:latest
-docker push subnetcalc.azurecr.io/subnet_calc:latest
+az acr login --name tpulliam
+docker tag subnet_calc:latest tpulliam.azurecr.io/subnet_calc:latest
+docker push tpulliam.azurecr.io/subnet_calc:latest
 ```
 
 Naviagate to `http://localhost:8080`
